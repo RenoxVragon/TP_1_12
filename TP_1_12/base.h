@@ -13,12 +13,9 @@ private:
 	int age;
 	string family[3];
 public:
-	Base() { fio = ""; birth_date[0] = 0; birth_date[1] = 0;
-	birth_date[2] = 0; death_date[0] = 0; death_date[1] = 0;
-	death_date[2] = 0; age = 0; family[0] = ""; family[1] = ""; family[2] = "";
-	}
-	Base(const Base& base_copy) {};
-	~Base() = default;
+	Base();
+	Base(const Base& base_copy);
+	~Base();
 	void set_fio(string _fio);
 	string get_fio();
 	void set_birth_date(int _day, int _month, int _year);

@@ -3,11 +3,14 @@
 
 class Child :public Base
 {
+private:
+	bool is_dead;
 public:
-public:
+	Child();
+	Child(const Child& child_copy);
+	~Child();
 	//void file_load();
 	//void file_save();
 	void print_info();
 	void set_info();
-};
 };

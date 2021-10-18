@@ -1,6 +1,55 @@
 #define _CRT_SECURE_NO_WARNINGS 
 #include "base.h"
 
+Base::Base()
+{
+	cout << "Constructor default Base" << endl;
+	fio = ""; 
+	birth_date[0] = 0; 
+	birth_date[1] = 0;
+	birth_date[2] = 0; 
+	death_date[0] = 0; 
+	death_date[1] = 0;
+	death_date[2] = 0; 
+	age = 0; 
+	family[0] = "";
+	family[1] = ""; 
+	family[2] = "";
+}
+
+Base::Base(const Base& base_copy)
+{
+	cout << "Constructor copy Base" << endl;
+	fio = base_copy.fio;
+	birth_date[0] = base_copy.birth_date[0];
+	birth_date[1] = base_copy.birth_date[1];
+	birth_date[2] = base_copy.birth_date[2];
+	death_date[0] = base_copy.death_date[0];
+	death_date[1] = base_copy.death_date[1];
+	death_date[2] = base_copy.death_date[2];
+	age = base_copy.age;
+	family[0] = base_copy.family[0];
+	family[1] = base_copy.family[1];
+	family[2] = base_copy.family[2];
+}
+
+Base::~Base()
+{
+	cout << "Deconstructor default Base" << endl;
+	fio = "";
+	birth_date[0] = 0;
+	birth_date[1] = 0;
+	birth_date[2] = 0;
+	death_date[0] = 0;
+	death_date[1] = 0;
+	death_date[2] = 0;
+	age = 0;
+	family[0] = "";
+	family[1] = "";
+	family[2] = "";
+}
+
+
 void Base::set_fio(string _fio)
 {
 	this->fio = _fio;

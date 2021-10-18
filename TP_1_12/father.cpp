@@ -1,5 +1,23 @@
 #include "father.h"
 
+Father::Father() :Base()
+{
+	cout << "Constructor default Father" << endl;
+	is_dead = false;
+}
+
+Father::Father(const Father& father_copy):Base(father_copy)
+{
+	cout << "Constructor copy Father" << endl;
+	this->is_dead = father_copy.is_dead;
+}
+
+Father::~Father()
+{
+	cout << "Deconstructor default Father" << endl;
+	is_dead = false;
+}
+
 void Father::set_info()
 {
 	cout << "Введите ФИО отца: " << endl;
@@ -131,11 +149,13 @@ void Father::set_info()
 		}
 		else
 		{
+			if (choice == 1)
+				is_dead = true;
 			flag = 0;
 		}
 		cin.ignore(32767, '\n');
 	}
-	if (choice == 1)
+	if (is_dead == true)
 	{
 		flag = 1;
 		cout << "Введите год смерти (не может быть больше 2021 и меньше года рождения человека):" << endl;
@@ -273,6 +293,10 @@ void Father::print_info()
 	cout << "Мать: " << data[0] << endl;
 	cout << "Отец: " << data[1] << endl;
 	cout << "Супруга: " << data[2] << endl;
-	int *d_date = this->get_death_date();
-	cout << "Дата смерти: " << d_date[0] << "." << d_date[1] << "." << d_date[2] << endl;
+	if (is_dead == true)
+	{
+		int* d_date = this->get_death_date();
+		cout << "Дата смерти: " << d_date[0] << "." << d_date[1] << "." << d_date[2] << endl;
+	}
+	
 }

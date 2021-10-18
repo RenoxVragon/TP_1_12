@@ -1,5 +1,23 @@
 #include "child.h"
 
+Child::Child() :Base()
+{
+	cout << "Constructor default Child" << endl;
+	is_dead = false;
+}
+
+Child::Child(const Child& child_copy) :Base(child_copy)
+{
+	cout << "Constructor copy Mother" << endl;
+	this->is_dead = child_copy.is_dead;
+}
+
+Child::~Child()
+{
+	cout << "Deconstructor default Mother" << endl;
+	is_dead = false;
+}
+
 void Child::set_info()
 {
 	cout << "Введите ФИО ребенка: " << endl;
@@ -131,11 +149,13 @@ void Child::set_info()
 		}
 		else
 		{
+			if (choice == 1)
+				is_dead = true;
 			flag = 0;
 		}
 		cin.ignore(32767, '\n');
 	}
-	if (choice == 1)
+	if (is_dead == true)
 	{
 		flag = 1;
 		cout << "Введите год смерти (не может быть больше 2021 и меньше года рождения человека):" << endl;
@@ -273,6 +293,9 @@ void Child::print_info()
 	cout << "Мать: " << data[0] << endl;
 	cout << "Отец: " << data[1] << endl;
 	cout << "Супруг(а): " << data[2] << endl;
-	int* d_date = this->get_death_date();
-	cout << "Дата смерти: " << d_date[0] << "." << d_date[1] << "." << d_date[2] << endl;
+	if (is_dead == true)
+	{
+		int* d_date = this->get_death_date();
+		cout << "Дата смерти: " << d_date[0] << "." << d_date[1] << "." << d_date[2] << endl;
+	}
 }

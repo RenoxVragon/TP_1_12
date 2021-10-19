@@ -88,7 +88,7 @@ void menu_selection(int number)
 	int index;
 	switch(number)
 	{
-	case 1:
+	case 1: // МЕНЮ ДОБАВЛЕНИЯ ОБЪЕКТА
 		print_add_menu();
 		next_choice = process_choice(0, 3);
 		switch (next_choice)
@@ -112,8 +112,7 @@ void menu_selection(int number)
 			break;
 		}
 		break;
-	case 2:
-		//system("cls");
+	case 2: // МЕНЮ УДАЛЕНИЯ ОБЪЕКТА
 		print_delete_menu();
 		next_choice = process_choice(0, 3);
 		switch (next_choice)
@@ -173,13 +172,68 @@ void menu_selection(int number)
 			break;
 		}
 		break;
-	case 3:
-		//system("cls");
+	case 3: // МЕНЮ ИЗМЕНЕНИЯ ОБЪЕКТА
 		print_change_menu();
 		next_choice = process_choice(0, 3);
+		switch (next_choice)
+		{
+		case 1:
+			cin.ignore();
+			if (keeper_father.get_size() > 0)
+			{
+				for (int i = 0; i < keeper_father.get_size(); i++)
+				{
+					cout << "Индекс объекта: " << i << endl;
+					keeper_father[i].print_info();
+					cout << "\n" << endl;
+				}
+				cout << "Выберите индекс объекта, который хотите изменить: " << endl;
+				index = process_choice(0, keeper_father.get_size() - 1);
+				cin.ignore();
+				keeper_father[index].change_info();
+			}
+			else
+				cout << "Нет объектов для изменения в контейнере." << endl;
+			break;
+		case 2:
+			cin.ignore();
+			if (keeper_mother.get_size() > 0)
+			{
+				for (int i = 0; i < keeper_mother.get_size(); i++)
+				{
+					cout << "Индекс объекта: " << i << endl;
+					keeper_mother[i].print_info();
+					cout << "\n" << endl;
+				}
+				cout << "Выберите индекс объекта, который хотите изменить: " << endl;
+				index = process_choice(0, keeper_mother.get_size() - 1);
+				keeper_mother[index].change_info();
+			}
+			else
+				cout << "Нет объектов для удаления в контейнере." << endl;
+			break;
+		case 3:
+			cin.ignore();
+			if (keeper_child.get_size() > 0)
+			{
+				for (int i = 0; i < keeper_child.get_size(); i++)
+				{
+					cout << "Индекс объекта: " << i << endl;
+					keeper_child[i].print_info();
+					cout << "\n" << endl;
+				}
+				cout << "Выберите индекс объекта, который хотите изменить: " << endl;
+				index = process_choice(0, keeper_child.get_size() - 1);
+				keeper_child[index].change_info();
+			}
+			else
+				cout << "Нет объектов для удаления в контейнере." << endl;
+			break;
+		case 0:
+			break;
+		}
 		break;
-	case 4:
-		//system("cls");
+	case 4: // МЕНЮ ВЫВОДА ОБЪЕКТОВ
 		print_show_menu();
 		next_choice = process_choice(0, 3);
 		switch (next_choice)

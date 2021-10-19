@@ -13,4 +13,5 @@ public:
 	//void file_save();
 	void print_info();
 	void set_info();
+	void change_info();
 };

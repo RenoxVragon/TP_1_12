@@ -697,5 +697,87 @@ void Father::print_info()
 		int* d_date = this->get_death_date();
 		cout << "Дата смерти: " << d_date[0] << "." << d_date[1] << "." << d_date[2] << endl;
 	}
-	
+}
+
+void Father::set_dead(bool _dead)
+{
+	this->is_dead = _dead;
+}
+
+void Father::file_load()
+{
+	ifstream fin;
+	fin.exceptions(std::ios::badbit | std::ios::failbit | std::ios::eofbit);
+	string load_name;
+	cout << "Введите название файла, в котором хранится информация об объекте класса Father." << endl;
+	cout << "Программа загружает их из файлов со следующим шаблоном: save_father_*ФИО отца*.txt. " << endl;
+	cout << "Для отмены ввода, введите back: " << endl;
+	while (!fin.is_open())
+	{
+		cin.ignore();
+		getline(cin, load_name);
+		try
+		{
+			if (load_name == "back")
+			{
+				break;
+			}
+			fin.open(load_name);
+		}
+		catch (const std::ios_base::failure& e)
+		{
+			std::cerr << "can not open file\nwhat: " << e.what() << "\n";
+		}
+	}
+	if (load_name != "back")
+	{
+		string _fio, _fio_m, _fio_f, _fio_c;
+		int birth[3], death[3], date;
+		bool dead;
+		getline(fin, _fio);
+		for (int i = 0; i < 3; i++)
+		{
+			fin >> date;
+			birth[i] = date;
+		}
+		fin >> dead;
+		for (int i = 0; i < 3; i++)
+		{
+			fin >> date;
+			death[i] = date;
+		}
+		getline(fin, _fio_m);
+		getline(fin, _fio_f);
+		getline(fin, _fio_c);
+		fin.close();
+		this->set_birth_date(birth[0], birth[1], birth[2]);
+		this->set_dead(dead);
+		this->set_death_date(death[0], death[1], death[2]);
+		this->set_fio(_fio);
+		this->set_family(_fio_m, _fio_f, _fio_c);
+		this->set_age();
+	}
+}
+
+void Father::file_save()
+{
+	ofstream fout;
+	string save_name = "save_father";
+	save_name = save_name + "_" + this->get_fio() + ".txt";
+	fout.open(save_name);
+	string* family = this->get_family();
+	int* date = this->get_birth_date();
+	fout << this->get_fio() << endl;
+	fout << date[0] << endl;
+	fout << date[1] << endl;
+	fout << date[2] << endl;
+	fout << this->is_dead << endl;
+	date = this->get_death_date();
+	fout << date[0] << endl;
+	fout << date[1] << endl;
+	fout << date[2] << endl;
+	fout << family[0] << endl;
+	fout << family[1] << endl;
+	fout << family[2] << endl;
+	fout.close();
 }

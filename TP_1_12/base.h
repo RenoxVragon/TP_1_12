@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <fstream>
 using namespace std;
 
 class Base
@@ -26,7 +27,7 @@ public:
 	int get_age();
 	void set_family(string fio_m, string fio_f, string fio_c);
 	string* get_family();
-	//virtual void file_load() = 0;
-	//virtual void file_save() = 0;
+	virtual void file_load() = 0;
+	virtual void file_save() = 0;
 	virtual void print_info() = 0;
 };

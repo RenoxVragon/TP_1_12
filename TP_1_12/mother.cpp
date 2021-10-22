@@ -76,7 +76,7 @@ void Mother::set_info()
 					flag = 0;
 					break;
 				case 2:
-					if (birth[0] > 29)
+					if (birth[0] > 29 || ((birth[0] == 29) && (birth[2] % 4 != 0)))
 					{
 						cout << "Введен неверный день. Попробуйте еще раз: " << endl;
 						break;
@@ -209,7 +209,7 @@ void Mother::set_info()
 						flag = 0;
 						break;
 					case 2:
-						if (death[0] > 29)
+						if (death[0] > 29 || ((death[0] == 29) && (death[2] % 4 != 0)))
 						{
 							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
 							break;
@@ -369,7 +369,7 @@ void Mother::change_info()
 						flag = 0;
 						break;
 					case 2:
-						if (birth[0] > 29)
+						if (birth[0] > 29 || ((birth[0] == 29) && (birth[2] % 4 != 0)))
 						{
 							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
 							break;
@@ -502,7 +502,7 @@ void Mother::change_info()
 							flag = 0;
 							break;
 						case 2:
-							if (death[0] > 29)
+							if (death[0] > 29 || ((death[0] == 29) && (death[2] % 4 != 0)))
 							{
 								cout << "Введен неверный день. Попробуйте еще раз: " << endl;
 								break;
@@ -616,7 +616,7 @@ void Mother::change_info()
 						flag = 0;
 						break;
 					case 2:
-						if (death[0] > 29)
+						if (death[0] > 29 || ((death[0] == 29) && (death[2] % 4 != 0)))
 						{
 							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
 							break;
@@ -741,6 +741,9 @@ void Mother::file_load()
 		int birth[3], death[3], date;
 		bool dead;
 		getline(fin, _fio);
+		getline(fin, _fio_m);
+		getline(fin, _fio_f);
+		getline(fin, _fio_c);
 		for (int i = 0; i < 3; i++)
 		{
 			fin >> date;
@@ -752,9 +755,6 @@ void Mother::file_load()
 			fin >> date;
 			death[i] = date;
 		}
-		getline(fin, _fio_m);
-		getline(fin, _fio_f);
-		getline(fin, _fio_c);
 		fin.close();
 		this->set_birth_date(birth[0], birth[1], birth[2]);
 		this->set_dead(dead);
@@ -774,6 +774,9 @@ void Mother::file_save()
 	string* family = this->get_family();
 	int* date = this->get_birth_date();
 	fout << this->get_fio() << endl;
+	fout << family[0] << endl;
+	fout << family[1] << endl;
+	fout << family[2] << endl;
 	fout << date[0] << endl;
 	fout << date[1] << endl;
 	fout << date[2] << endl;
@@ -782,8 +785,5 @@ void Mother::file_save()
 	fout << date[0] << endl;
 	fout << date[1] << endl;
 	fout << date[2] << endl;
-	fout << family[0] << endl;
-	fout << family[1] << endl;
-	fout << family[2] << endl;
 	fout.close();
 }

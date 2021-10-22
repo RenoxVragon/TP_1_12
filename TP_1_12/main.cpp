@@ -13,20 +13,20 @@ Keeper<Child> keeper_child;
 
 int process_choice(int min_range, int max_range)
 {
+	string str;
 	while (1)
 	{
-		int choice;
-		cin >> choice;
-		if (cin.fail() || choice < min_range || choice > max_range)
+		cin >> str;
+		if (str.find_first_not_of("0123456789", 0) == string::npos)
 		{
-			cin.clear();
-			cout << "Некорректный ввод. Попробуйте еще раз: " << endl;
+			int choice = stoi(str);
+			if (choice < min_range || choice > max_range)
+				cout << "Некорректный ввод. Попробуйте еще раз: " << endl;
+			else
+				return choice;
 		}
 		else
-		{
-			return choice;
-		}
-		cin.ignore(32767, '\n');
+			cout << "Некорректный ввод. Попробуйте еще раз: " << endl;
 	}
 }
 

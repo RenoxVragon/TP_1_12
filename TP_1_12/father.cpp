@@ -457,112 +457,112 @@ void Father::change_info()
 			cout << "Введите год смерти (не может быть больше 2021 и меньше года рождения человека):" << endl;
 			while (flag)
 			{
-				cin >> death[2];
-				if (cin.fail() || death[2] < date[2] || death[2] > 2021)
+				cin >> str;
+				if (str.find_first_not_of("0123456789", 0) == string::npos)
 				{
-					cin.clear();
-					cout << "Введен неверный год. Попробуйте еще раз: " << endl;
+					death[2] = stoi(str);
+					if (death[2] < birth[2] || death[2] > 2021)
+						cout << "Введен неверный год. Попробуйте еще раз: " << endl;
+					else
+						flag = 0;
 				}
 				else
-				{
-					flag = 0;
-				}
-				cin.ignore(32767, '\n');
+					cout << "Некорректный ввод. Попробуйте еще раз: " << endl;
 			}
 			flag = 1;
 			cout << "Введите месяц смерти:" << endl;
 			while (flag)
 			{
-				cin >> death[1];
-				if (cin.fail() || death[1] < 1 || death[1] > 12)
+				cin >> str;
+				if (str.find_first_not_of("0123456789", 0) == string::npos)
 				{
-					cin.clear();
-					cout << "Введен неверный месяц. Попробуйте еще раз: " << endl;
+					death[1] = stoi(str);
+					if (death[1] < 1 || death[1] > 12)
+						cout << "Введен неверный месяц. Попробуйте еще раз: " << endl;
+					else
+						flag = 0;
 				}
 				else
-				{
-					flag = 0;
-				}
-				cin.ignore(32767, '\n');
+					cout << "Некорректный ввод. Попробуйте еще раз: " << endl;
 			}
 			flag = 1;
 			cout << "Введите день смерти:" << endl;
 			while (flag)
 			{
-				cin >> death[0];
-				if (cin.fail() || death[0] < 0 || death[0] > 31)
+				cin >> str;
+				if (str.find_first_not_of("0123456789", 0) == string::npos)
 				{
-					cin.clear();
-					cout << "Введен неверный день. Попробуйте еще раз: " << endl;
+					death[0] = stoi(str);
+					if (death[0] < 0 || death[0] > 31)
+						cout << "Введен неверный день. Попробуйте еще раз: " << endl;
+					else
+						switch (death[1])
+						{
+						case 1:
+							flag = 0;
+							break;
+						case 2:
+							if (death[0] > 29)
+							{
+								cout << "Введен неверный день. Попробуйте еще раз: " << endl;
+								break;
+							}
+							flag = 0;
+							break;
+						case 3:
+							flag = 0;
+							break;
+						case 4:
+							if (death[0] > 30)
+							{
+								cout << "Введен неверный день. Попробуйте еще раз: " << endl;
+								break;
+							}
+							flag = 0;
+							break;
+						case 5:
+							flag = 0;
+							break;
+						case 6:
+							if (death[0] > 30)
+							{
+								cout << "Введен неверный день. Попробуйте еще раз: " << endl;
+								break;
+							}
+							flag = 0;
+							break;
+						case 7:
+							flag = 0;
+							break;
+						case 8:
+							flag = 0;
+							break;
+						case 9:
+							if (death[0] > 30)
+							{
+								cout << "Введен неверный день. Попробуйте еще раз: " << endl;
+								break;
+							}
+							flag = 0;
+							break;
+						case 10:
+							flag = 0;
+							break;
+						case 11:
+							if (death[0] > 30)
+							{
+								cout << "Введен неверный день. Попробуйте еще раз: " << endl;
+								break;
+							}
+							flag = 0;
+							break;
+						case 12:
+							flag = 0;
+							break;
+						}
 				}
 				else
-				{
-					switch (death[1])
-					{
-					case 1:
-						flag = 0;
-						break;
-					case 2:
-						if (death[0] > 29)
-						{
-							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
-							break;
-						}
-						flag = 0;
-						break;
-					case 3:
-						flag = 0;
-						break;
-					case 4:
-						if (death[0] > 30)
-						{
-							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
-							break;
-						}
-						flag = 0;
-						break;
-					case 5:
-						flag = 0;
-						break;
-					case 6:
-						if (death[0] > 30)
-						{
-							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
-							break;
-						}
-						flag = 0;
-						break;
-					case 7:
-						flag = 0;
-						break;
-					case 8:
-						flag = 0;
-						break;
-					case 9:
-						if (death[0] > 30)
-						{
-							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
-							break;
-						}
-						flag = 0;
-						break;
-					case 10:
-						flag = 0;
-						break;
-					case 11:
-						if (death[0] > 30)
-						{
-							cout << "Введен неверный день. Попробуйте еще раз: " << endl;
-							break;
-						}
-						flag = 0;
-						break;
-					case 12:
-						flag = 0;
-						break;
-					}
-				}
-				cin.ignore(32767, '\n');
+					cout << "Некорректный ввод. Попробуйте еще раз: " << endl;
 			}
 		}
 		else

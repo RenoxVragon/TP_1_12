@@ -90,11 +90,7 @@ string Base::get_fio() { return fio; }
 int Base::get_age() { return age; }
 int* Base::get_birth_date() 
 { 
-	//int day, month, year; 
-	//day = birth_date[0]; 
-	//month = birth_date[1];
-	//year = birth_date[2];
-	//return day, month, year;
+	
 	return birth_date;
 }
 
